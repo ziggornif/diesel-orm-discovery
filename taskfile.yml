@@ -1,0 +1,39 @@
+version: '3'
+
+tasks:
+  rundb:
+    dir: 'docker'
+    cmds:
+      - docker compose down -v && docker compose up -d
+
+  setupdb:
+    cmds:
+      - diesel migration run
+
+  write_post:
+    cmds:
+      - cargo run --bin write_post
+
+  publish_post:
+    cmds:
+      - cargo run --bin publish_post {{.CLI_ARGS}}
+
+  delete_post:
+    cmds:
+      - cargo run --bin delete_post {{.CLI_ARGS}}
+
+  list_posts:
+    cmds:
+      - cargo run --bin show_posts
+
+  get_post:
+    cmds:
+      - cargo run --bin get_post {{.CLI_ARGS}}
+  
+  gen_doc:
+    cmds:
+      - cargo doc --open
+  
+  test:
+    cmds:
+      - cargo test
