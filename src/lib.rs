@@ -1,6 +1,3 @@
-// copyright
-// blablabla
-
 //! # Diesel demo module
 //!
 //! This module is a diesel features test
