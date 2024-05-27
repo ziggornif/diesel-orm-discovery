@@ -61,7 +61,10 @@ pub fn create_post(conn: &mut PgConnection, title: &str, body: &str) -> Post {
 /// use diesel_demo::*;
 ///
 /// let conn = &mut db_connect();
-/// let created = publish_post(conn, 1);
+/// // first create post
+/// let post = create_post(conn, "foo", "bar");
+/// // then publish it
+/// publish_post(conn, post.id);
 /// ```
 pub fn publish_post(conn: &mut PgConnection, post_id: i32) -> Post {
     use self::schema::posts::dsl::{posts, published};
